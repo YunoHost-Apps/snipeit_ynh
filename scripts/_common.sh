@@ -15,6 +15,21 @@ pkg_dependencies="openssl php-mbstring  php-curl php-mysql php-ldap php-zip php-
 # EXPERIMENTAL HELPERS
 #=================================================
 
+# Execute a command as another user
+# usage: exec_as USER COMMAND [ARG ...]
+exec_as() {
+  local USER=$1
+  shift 1
+
+  if [[ $USER = $(whoami) ]]; then
+    eval $@
+  else
+    # use sudo twice to be root and be allowed to use another user
+    sudo sudo -u "$USER" $@
+  fi
+}
+
+
 # Execute a composer command from a given directory
 # usage: composer_exec AS_USER WORKDIR COMMAND [ARG ...]
 exec_composer() {

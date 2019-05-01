@@ -41,7 +41,7 @@ init_composer() {
 
 
 	# update dependencies to create composer.lock
-	exec_composer "$AS_USER" "$WORKDIR" install --no-dev \
+	exec_composer "$AS_USER" "$WORKDIR" install  --no-dev --prefer-source \
 		|| ynh_die "Unable to update core dependencies with Composer"
 }
 

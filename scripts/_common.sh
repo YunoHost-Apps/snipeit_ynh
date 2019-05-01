@@ -5,7 +5,7 @@
 #=================================================
 
 # dependencies used by the app
-pkg_dependencies="deb1 deb2"
+pkg_dependencies="openssl php-pdo php-mbstring php-tokenizer php-curl php-mysql php-ldap php-zip php-bcmath  php7.0-xml"
 
 #=================================================
 # PERSONAL HELPERS

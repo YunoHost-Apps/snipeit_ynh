@@ -161,7 +161,7 @@ ynh_script_progression --message="Configuring php-fpm..." --time --weight=1
 # Create a dedicated php-fpm config
 ynh_add_fpm_config
 
-init_composer "$app" "$final_path"
+init_composer "$final_path"
 
 
 #=================================================

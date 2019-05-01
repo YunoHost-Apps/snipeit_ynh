@@ -5,7 +5,7 @@
 #=================================================
 
 # dependencies used by the app
-pkg_dependencies="openssl php-mbstring  php-curl php-mysql php-ldap php-zip php-bcmath  php-xml php-common "
+pkg_dependencies="openssl php-mbstring  php-curl php-mysql php-ldap php-zip php-bcmath  php-xml php-common"
 
 #=================================================
 # PERSONAL HELPERS

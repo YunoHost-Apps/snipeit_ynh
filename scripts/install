@@ -194,10 +194,10 @@ ynh_replace_string  "yunodomain"    "$domain"     "$final_path/.env"
 ynh_replace_string  "__LANGUAGE__"  "$language"   "$final_path/.env"
 
 # setup application config
-( cd $final_path && sudo /usr/bin/php artisan key:generate )
-( cd $final_path && sudo /usr/bin/php artisan migrate )
-( cd $final_path && sudo /usr/bin/php artisan config:clear )
-( cd $final_path && sudo /usr/bin/php artisan config:cache )
+( cd $final_path && sudo /usr/bin/php artisan key:generate -n )
+( cd $final_path && sudo /usr/bin/php artisan migrate -n )
+( cd $final_path && sudo /usr/bin/php artisan config:clear -n)
+( cd $final_path && sudo /usr/bin/php artisan config:cache -n)
 
 #=================================================
 # STORE THE CONFIG FILE CHECKSUM

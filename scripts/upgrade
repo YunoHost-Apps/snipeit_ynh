@@ -139,9 +139,9 @@ ynh_add_fpm_config
 
 ( cd $final_path && sudo /usr/bin/php composer.phar install --no-dev --prefer-source )
 ( cd $final_path && sudo /usr/bin/php composer.phar dump-autoload )
-( cd $final_path && sudo /usr/bin/php artisan migrate )
-( cd $final_path && sudo /usr/bin/php artisan config:clear )
-( cd $final_path && sudo /usr/bin/php artisan config:cache )
+( cd $final_path && sudo /usr/bin/php artisan migrate -n )
+( cd $final_path && sudo /usr/bin/php artisan config:clear -n )
+( cd $final_path && sudo /usr/bin/php artisan config:cache -n )
 
 ### Verify the checksum of a file, stored by `ynh_store_file_checksum` in the install script.
 ### And create a backup of this file if the checksum is different. So the file will be backed up if the admin had modified it.

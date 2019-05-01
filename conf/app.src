@@ -1,0 +1,6 @@
+SOURCE_URL=https://github.com/snipe/snipe-it/archive/v4.6.15.tar.gz
+SOURCE_SUM=9631b73485c72109df28b9d5aaa6fffa1944fbec2e3432920d0c87805b655615
+SOURCE_SUM_PRG=sha256sum
+SOURCE_FORMAT=tar.gz
+SOURCE_IN_SUBDIR=true
+SOURCE_FILENAME=

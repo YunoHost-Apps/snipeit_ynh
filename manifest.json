@@ -3,7 +3,8 @@
     "id": "snipeit",
     "packaging_format": 1,
     "description": {
-        "en": "Open source asset management"
+        "en": "Manage assets for IT operations",
+        "fr": "Gestionnaire de ressources informatiques"
     },
     "version": "4.6.15~ynh1",
     "url": "https://snipeitapp.com/",

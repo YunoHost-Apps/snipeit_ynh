@@ -136,9 +136,15 @@ ynh_add_fpm_config
 #=================================================
 # SPECIFIC UPGRADE
 #=================================================
+# INSTALL AND INITIALIZE COMPOSER
+#=================================================
+ynh_script_progression --message="Installing composer..." --time --weight=1
 
-( cd $final_path && sudo /usr/bin/php composer.phar install --no-dev --prefer-source )
-( cd $final_path && sudo /usr/bin/php composer.phar dump-autoload )
+# Install composer
+ynh_install_composer
+
+ynh_exec_warn_less ynh_composer_exec --commands=\"dump-autoload\"
+
 ( cd $final_path && sudo /usr/bin/php artisan migrate -n )
 ( cd $final_path && sudo /usr/bin/php artisan config:clear -n )
 ( cd $final_path && sudo /usr/bin/php artisan config:cache -n )

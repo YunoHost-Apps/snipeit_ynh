@@ -5,7 +5,7 @@
     "description": {
         "en": "Open source asset management"
     },
-    "version": "4.6.15~ynh1",
+    "version": "4.6.15~ynh2",
     "url": "https://snipeitapp.com/",
     "license": "MIT",
     "maintainer": {

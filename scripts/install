@@ -161,15 +161,15 @@ ynh_script_progression --message="Configuring php-fpm..." --time --weight=1
 # Create a dedicated php-fpm config
 ynh_add_fpm_config
 
-( cd $final_path && curl -sS https://getcomposer.org/installer | php )
-( cd $final_path && /usr/bin/php composer.phar install --no-dev --prefer-source )
-
 #=================================================
 # SPECIFIC SETUP
 #=================================================
-# ...
+# INSTALL AND INITIALIZE COMPOSER
 #=================================================
+ynh_script_progression --message="Installing composer..." --time --weight=1
 
+# Install composer
+ynh_install_composer
 
 #=================================================
 # MODIFY A CONFIG FILE

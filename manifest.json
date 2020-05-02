@@ -6,7 +6,7 @@
         "en": "Manage assets for IT operations",
         "fr": "Gestionnaire de ressources informatiques"
     },
-    "version": "4.6.15~ynh2",
+    "version": "4.9.2~ynh1",
     "url": "https://snipeitapp.com/",
     "license": "MIT",
     "maintainer": {
@@ -14,12 +14,12 @@
         "email": "anmol@datamol.org"
     },
     "requirements": {
-        "yunohost": ">= 3.5"
+        "yunohost": ">= 3.8"
     },
     "multi_instance": true,
     "services": [
         "nginx",
-        "php7.0-fpm",
+        "php-fpm",
         "mysql"
     ],
     "arguments": {

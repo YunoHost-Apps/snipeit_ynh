@@ -4,11 +4,13 @@
 # COMMON VARIABLES
 #=================================================
 
+# Packages requirements: https://snipe-it.readme.io/docs/requirements
+
 # dependencies used by the app
 pkg_dependencies="openssl"
 
 YNH_PHP_VERSION=7.3
-extra_php_dependencies="php${YNH_PHP_VERSION}-mbstring php${YNH_PHP_VERSION}-curl php${YNH_PHP_VERSION}-mysql php${YNH_PHP_VERSION}-ldap php${YNH_PHP_VERSION}-zip php${YNH_PHP_VERSION}-bcmath php${YNH_PHP_VERSION}-xml php${YNH_PHP_VERSION}-common"
+extra_php_dependencies="php${YNH_PHP_VERSION}-mbstring php${YNH_PHP_VERSION}-curl php${YNH_PHP_VERSION}-mysql php${YNH_PHP_VERSION}-ldap php${YNH_PHP_VERSION}-zip php${YNH_PHP_VERSION}-bcmath php${YNH_PHP_VERSION}-xml php${YNH_PHP_VERSION}-pdo php${YNH_PHP_VERSION}-tokenizer php${YNH_PHP_VERSION}-fileinfo php${YNH_PHP_VERSION}-gd"
 
 #=================================================
 # PERSONAL HELPERS

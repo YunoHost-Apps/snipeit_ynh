@@ -4,8 +4,13 @@
 # COMMON VARIABLES
 #=================================================
 
+# Packages requirements: https://snipe-it.readme.io/docs/requirements
+
 # dependencies used by the app
-pkg_dependencies="openssl php7.0-mbstring  php7.0-curl php7.0-mysql php7.0-ldap php7.0-zip php7.0-bcmath  php7.0-xml php7.0-common"
+pkg_dependencies="openssl"
+
+YNH_PHP_VERSION=7.3
+extra_php_dependencies="php${YNH_PHP_VERSION}-mbstring php${YNH_PHP_VERSION}-curl php${YNH_PHP_VERSION}-mysql php${YNH_PHP_VERSION}-ldap php${YNH_PHP_VERSION}-zip php${YNH_PHP_VERSION}-bcmath php${YNH_PHP_VERSION}-xml php${YNH_PHP_VERSION}-common php${YNH_PHP_VERSION}-gd"
 
 #=================================================
 # PERSONAL HELPERS
@@ -48,7 +53,7 @@ ynh_composer_exec () {
 	# Manage arguments with getopts
 	ynh_handle_getopts_args "$@"
 	workdir="${workdir:-$final_path}"
-	phpversion="${phpversion:-7.0}"
+	phpversion="${phpversion:-${YNH_PHP_VERSION}}"
 
 	COMPOSER_HOME="$workdir/.composer" \
 		php${phpversion} "$workdir/composer.phar" $commands \
@@ -68,7 +73,7 @@ ynh_install_composer () {
 	# Manage arguments with getopts
 	ynh_handle_getopts_args "$@"
 	workdir="${workdir:-$final_path}"
-	phpversion="${phpversion:-7.0}"
+	phpversion="${phpversion:-${YNH_PHP_VERSION}}"
 
 	curl -sS https://getcomposer.org/installer \
 		| COMPOSER_HOME="$workdir/.composer" \

@@ -132,7 +132,7 @@ ynh_script_progression --message="Configuring nginx web server..." --time --weig
 ### `ynh_add_nginx_config` will use the file conf/nginx.conf
 
 # Create a dedicated nginx config
-ynh_add_nginx_config
+ynh_add_nginx_config YNH_PHP_VERSION
 
 #=================================================
 # CREATE DEDICATED USER
@@ -159,7 +159,7 @@ ynh_script_progression --message="Configuring php-fpm..." --time --weight=1
 ###		- And the section "PHP-FPM CONFIGURATION" in the upgrade script
 
 # Create a dedicated php-fpm config
-ynh_add_fpm_config
+ynh_add_fpm_config --usage=low --footprint=low --phpversion=$YNH_PHP_VERSION --package="$extra_php_dependencies"
 
 #=================================================
 # SPECIFIC SETUP
@@ -194,10 +194,10 @@ ynh_replace_string  "yunodomain"    "$domain"     "$final_path/.env"
 ynh_replace_string  "__LANGUAGE__"  "$language"   "$final_path/.env"
 
 # setup application config
-( cd $final_path && sudo /usr/bin/php artisan key:generate -n --force --env)
-( cd $final_path && sudo /usr/bin/php artisan migrate -n --force)
-( cd $final_path && sudo /usr/bin/php artisan config:clear -n)
-( cd $final_path && sudo /usr/bin/php artisan config:cache -n)
+( cd $final_path && php$YNH_PHP_VERSION artisan key:generate -n --force --env)
+( cd $final_path && php$YNH_PHP_VERSION artisan migrate -n --force)
+( cd $final_path && php$YNH_PHP_VERSION artisan config:clear -n)
+( cd $final_path && php$YNH_PHP_VERSION artisan config:cache -n)
 
 #=================================================
 # STORE THE CONFIG FILE CHECKSUM

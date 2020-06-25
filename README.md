@@ -11,7 +11,7 @@ This is a FOSS project for asset management in IT Operations. Knowing who has wh
 
 It is built on Laravel 5.4.
 
-**Shipped version:** 4.6.15
+**Shipped version:** 4.9.2
 
 
 

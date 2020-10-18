@@ -6,7 +6,7 @@
         "en": "Manage assets for IT operations",
         "fr": "Gestionnaire de ressources informatiques"
     },
-    "version": "4.9.2~ynh1",
+    "version": "4.9.5~ynh1",
     "url": "https://snipeitapp.com/",
     "license": "MIT",
     "maintainer": {
@@ -19,7 +19,7 @@
     "multi_instance": true,
     "services": [
         "nginx",
-        "php-fpm",
+        "php7.0-fpm",
         "mysql"
     ],
     "arguments": {
@@ -28,7 +28,8 @@
                 "name": "domain",
                 "type": "domain",
                 "ask": {
-                    "en": "Choose a domain name for SnipeIT"
+                    "en": "Choose a domain name for Snipe-IT",
+                    "fr": "Choisissez un nom de domaine pour Snipe-IT"
                 },
                 "example": "example.com"
             },
@@ -36,7 +37,8 @@
                 "name": "admin",
                 "type": "user",
                 "ask": {
-                    "en": "Choose an admin user"
+                    "en": "Choose an admin user",
+                    "fr": "Choisissez l'administrateur"
                 },
                 "example": "johndoe"
             },
@@ -44,7 +46,8 @@
                 "name": "is_public",
                 "type": "boolean",
                 "ask": {
-                    "en": "Is it a public application?"
+                    "en": "Is it a public application?",
+                    "fr": "Est-ce une application publique ?"
                 },
                 "default": true
             },
@@ -52,9 +55,10 @@
                 "name": "language",
                 "type": "string",
                 "ask": {
-                    "en": "Choose the application language"
+                    "en": "Choose the application language",
+                    "fr": "Choisissez la langue de l'application"
                 },
-                "choices": ["en", "en-GB", "af", "ar", "bg", "zh-CN", "zh-TW", "hr", "cs", "da", "nl", "et", "fi", "fr", "de", "el", "he", "hu", "id", "en-ID", "ga-IE", "it", "ja", "ko", "lv", "lt", "ms", "mi", "mn", "no", "fa", "pl", "pt-PT", "pt-BR", "ro", "ru", "es-ES", "es-CO", "sv-SE", "ta", "tr", "vi", "zu"],
+                "choices": ["en", "fr"],
                 "default": "en"
             }
         ]

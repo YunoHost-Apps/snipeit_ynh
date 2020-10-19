@@ -80,7 +80,7 @@ ynh_setup_source --dest_dir="$final_path"
 ynh_script_progression --message="Configuring NGINX web server..." --weight=5
 
 # Create a dedicated NGINX config
-ynh_add_nginx_config YNH_PHP_VERSION
+ynh_add_nginx_config
 
 #=================================================
 # CREATE DEDICATED USER
@@ -118,13 +118,11 @@ email=$(ynh_user_get_info $admin 'mail')
 # setup application config
 cp ../conf/.env $final_path/.env
 
-db_name=$(ynh_sanitize_dbid $app)
-
-ynh_replace_string  "__DB_NAME__"   "$db_name"    "$final_path/.env"
-ynh_replace_string  "__DB_PASS__"   "$db_pwd"     "$final_path/.env"
-ynh_replace_string  "__DB_USER__"   "$db_name"    "$final_path/.env"
-ynh_replace_string  "yunodomain"    "$domain"     "$final_path/.env"
-ynh_replace_string  "__LANGUAGE__"  "$language"   "$final_path/.env"
+ynh_replace_string  --match_string="__DB_NAME__"  --replace_string="$db_name"  --target_file="$final_path/.env"
+ynh_replace_string  --match_string="__DB_PASS__"  --replace_string="$db_pwd"   --target_file="$final_path/.env"
+ynh_replace_string  --match_string="__DB_USER__"  --replace_string="$db_name"  --target_file="$final_path/.env"
+ynh_replace_string  --match_string="yunodomain"   --replace_string="$domain"   --target_file="$final_path/.env"
+ynh_replace_string  --match_string="__LANGUAGE__" --replace_string="$language" --target_file="$final_path/.env"
 
 # setup application config
 ( cd $final_path && php$YNH_PHP_VERSION artisan key:generate -n --force --env)

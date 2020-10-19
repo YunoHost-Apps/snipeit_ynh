@@ -59,7 +59,7 @@ fi
 #=================================================
 # BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
 #=================================================
-ynh_script_progression --message="Backing up the app before upgrading (may take a while)..." --time --weight=1
+ynh_script_progression --message="Backing up Snipe-IT before upgrading (may take a while)..." --time --weight=1
 
 # Backup the current version of the app
 ynh_backup_before_upgrade
@@ -87,9 +87,9 @@ fi
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
-ynh_script_progression --message="Upgrading nginx web server configuration..." --time --weight=1
+ynh_script_progression --message="Upgrading NGINS web server configuration..." --time --weight=1
 
-# Create a dedicated nginx config
+# Create a dedicated NGINX config
 ynh_add_nginx_config
 
 #=================================================
@@ -110,9 +110,9 @@ ynh_system_user_create --username=$app
 #=================================================
 # PHP-FPM CONFIGURATION
 #=================================================
-ynh_script_progression --message="Upgrading php-fpm configuration..." --time --weight=1
+ynh_script_progression --message="Upgrading PHP-FPM configuration..." --time --weight=1
 
-# Create a dedicated php-fpm config
+# Create a dedicated PHP-FPM config
 ynh_add_fpm_config --usage=low --footprint=low --phpversion=$YNH_PHP_VERSION --package="$extra_php_dependencies"
 
 #=================================================
@@ -120,7 +120,7 @@ ynh_add_fpm_config --usage=low --footprint=low --phpversion=$YNH_PHP_VERSION --p
 #=================================================
 # INSTALL AND INITIALIZE COMPOSER
 #=================================================
-ynh_script_progression --message="Installing composer..." --time --weight=1
+ynh_script_progression --message="Installing Composer..." --time --weight=1
 
 # Install composer
 ynh_install_composer
@@ -163,7 +163,7 @@ fi
 #=================================================
 # RELOAD NGINX
 #=================================================
-ynh_script_progression --message="Reloading nginx web server..." --time --weight=1
+ynh_script_progression --message="Reloading NGINX web server..." --time --weight=1
 
 ynh_systemd_action --service_name=nginx --action=reload
 
@@ -171,4 +171,4 @@ ynh_systemd_action --service_name=nginx --action=reload
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Upgrade of $app completed" --time --last
+ynh_script_progression --message="Upgrade of Snipe-IT completed" --last

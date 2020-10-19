@@ -7,7 +7,7 @@
 If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/install) to learn how to install it.*
 
 ## Overview
-This is a FOSS project for asset management in IT Operations. Knowing who has which laptop, when it was purchased in order to depreciate it correctly, handling software licenses, etc. It is built on Laravel 5.4.
+Snipe-IT is a FOSS project for asset management in IT Operations. Knowing who has which laptop, when it was purchased in order to depreciate it correctly, handling software licenses, etc. It is built on Laravel 5.4.
 
 **Shipped version:** 4.9.5
 
@@ -34,7 +34,7 @@ This is a FOSS project for asset management in IT Operations. Knowing who has wh
 
  * Report a bug: https://github.com/YunoHost-Apps/snipeit_ynh/issues
  * Snipe-IT website: https://snipeitapp.com/
- * Github reop for Snipe-IT: https://github.com/snipe/snipe-it
+ * GitHub reop for Snipe-IT: https://github.com/snipe/snipe-it
  * YunoHost website: https://yunohost.org/
 
 ---

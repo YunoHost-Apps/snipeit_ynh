@@ -23,6 +23,7 @@ is_public=$(ynh_app_setting_get --app=$app --key=is_public)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 language=$(ynh_app_setting_get --app=$app --key=language)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
+phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 #=================================================
 # CHECK VERSION
@@ -127,9 +128,11 @@ ynh_install_composer
 
 ynh_exec_warn_less ynh_composer_exec --commands=\"dump-autoload\"
 
-( cd $final_path && php$YNH_PHP_VERSION artisan migrate -n --force)
-( cd $final_path && php$YNH_PHP_VERSION artisan config:clear -n )
-( cd $final_path && php$YNH_PHP_VERSION artisan config:cache -n )
+pushd "$final_path"
+	php$phpversion artisan migrate -n --force
+	php$phpversion artisan config:clear -n 
+	php$phpversion artisan config:cache -n 
+popd
 
 ### Verify the checksum of a file, stored by `ynh_store_file_checksum` in the install script.
 ### And create a backup of this file if the checksum is different. So the file will be backed up if the admin had modified it.

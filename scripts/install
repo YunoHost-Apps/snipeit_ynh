@@ -97,6 +97,7 @@ ynh_script_progression --message="Configuring PHP-FPM..." --weight=1
 
 # Create a dedicated PHP-FPM config
 ynh_add_fpm_config --usage=low --footprint=low --phpversion=$YNH_PHP_VERSION --package="$extra_php_dependencies"
+phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 #=================================================
 # SPECIFIC SETUP
@@ -121,14 +122,16 @@ cp ../conf/.env $final_path/.env
 ynh_replace_string  --match_string="__DB_NAME__"  --replace_string="$db_name"  --target_file="$final_path/.env"
 ynh_replace_string  --match_string="__DB_PASS__"  --replace_string="$db_pwd"   --target_file="$final_path/.env"
 ynh_replace_string  --match_string="__DB_USER__"  --replace_string="$db_name"  --target_file="$final_path/.env"
-ynh_replace_string  --match_string="yunodomain"   --replace_string="$domain"   --target_file="$final_path/.env"
+ynh_replace_string  --match_string="__DOMAIN__"   --replace_string="$domain"   --target_file="$final_path/.env"
 ynh_replace_string  --match_string="__LANGUAGE__" --replace_string="$language" --target_file="$final_path/.env"
 
 # setup application config
-( cd $final_path && php$YNH_PHP_VERSION artisan key:generate -n --force --env)
-( cd $final_path && php$YNH_PHP_VERSION artisan migrate -n --force)
-( cd $final_path && php$YNH_PHP_VERSION artisan config:clear -n)
-( cd $final_path && php$YNH_PHP_VERSION artisan config:cache -n)
+pushd "$final_path"
+	php$phpversion artisan key:generate -n --force --env
+	php$phpversion artisan migrate -n --force
+	php$phpversion artisan config:clear -n
+	php$phpversion artisan config:cache -n
+popd
 
 #=================================================
 # STORE THE CONFIG FILE CHECKSUM

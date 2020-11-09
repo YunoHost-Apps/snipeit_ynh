@@ -33,8 +33,8 @@ Snipe-IT is a FOSS project for asset management in IT Operations. Knowing who ha
 ## Links
 
  * Report a bug: https://github.com/YunoHost-Apps/snipeit_ynh/issues
- * Snipe-IT website: https://snipeitapp.com/
- * GitHub reop for Snipe-IT: https://github.com/snipe/snipe-it
+ * App website: https://snipeitapp.com/
+ * Upstream app repository: https://github.com/snipe/snipe-it
  * YunoHost website: https://yunohost.org/
 
 ---

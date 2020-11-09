@@ -13,6 +13,10 @@ source /usr/share/yunohost/helpers
 # MANAGE SCRIPT FAILURE
 #=================================================
 
+ynh_clean_setup () {
+	true
+}
+# Exit if an error occurs during the execution of the script
 ynh_abort_if_errors
 
 #=================================================
@@ -33,7 +37,7 @@ app=$YNH_APP_INSTANCE_NAME
 ynh_script_progression --message="Validating installation parameters..." --weight=1
 
 final_path=/var/www/$app
-test ! -e "$final_path" || ynh_die "This path already contains a folder"
+test ! -e "$final_path" || ynh_die --message="This path already contains a folder"
 
 # Register (book) web path
 ynh_webpath_register --app=$app --domain=$domain --path_url=$path_url
@@ -50,6 +54,8 @@ ynh_app_setting_set --app=$app --key=is_public --value=$is_public
 ynh_app_setting_set --app=$app --key=language --value=$language
 
 #=================================================
+# STANDARD MODIFICATIONS
+#=================================================
 # INSTALL DEPENDENCIES
 #=================================================
 ynh_script_progression --message="Installing dependencies..." --weight=3
@@ -59,11 +65,12 @@ ynh_install_app_dependencies $pkg_dependencies
 #=================================================
 # CREATE A MYSQL DATABASE
 #=================================================
-ynh_script_progression --message="Creating a MySQL database..." --weight=8
+ynh_script_progression --message="Creating a MySQL database..." --weight=7
 
-db_name=$(ynh_sanitize_dbid $app)
+db_name=$(ynh_sanitize_dbid --db_name=$app)
+db_user=$db_name
 ynh_app_setting_set --app=$app --key=db_name --value=$db_name
-ynh_mysql_setup_db --db_user=$db_name --db_name=$db_name
+ynh_mysql_setup_db --db_user=$db_user --db_name=$db_name
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -93,10 +100,10 @@ ynh_system_user_create --username=$app
 #=================================================
 # PHP-FPM CONFIGURATION
 #=================================================
-ynh_script_progression --message="Configuring PHP-FPM..." --weight=1
+ynh_script_progression --message="Configuring PHP-FPM..." --weight=2
 
 # Create a dedicated PHP-FPM config
-ynh_add_fpm_config --usage=low --footprint=low --phpversion=$YNH_PHP_VERSION --package="$extra_php_dependencies"
+ynh_add_fpm_config --usage=low --footprint=low --package="$extra_php_dependencies"
 phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 #=================================================
@@ -110,8 +117,9 @@ ynh_script_progression --message="Installing Composer..." --weight=21
 ynh_install_composer
 
 #=================================================
-# SPECIFIC SETUP
+# BUILDING
 #=================================================
+ynh_script_progression --message="Building..."
 
 # Get admin email
 email=$(ynh_user_get_info $admin 'mail')
@@ -136,6 +144,7 @@ popd
 #=================================================
 # STORE THE CONFIG FILE CHECKSUM
 #=================================================
+ynh_script_progression --message="Storing the config file checksum..." --weight=1
 
 # Calculate and store the config file checksum into the app settings
 ynh_store_file_checksum "$final_path/.env"
@@ -145,6 +154,7 @@ ynh_store_file_checksum "$final_path/.env"
 #=================================================
 # SECURE FILES AND DIRECTORIES
 #=================================================
+ynh_script_progression --message="Securing files and directories..." --weight=1
 
 # Set permissions to app files
 chown -R $app: $final_path
@@ -154,7 +164,7 @@ chmod -R 755 $final_path/public/uploads
 #=================================================
 # SETUP SSOWAT
 #=================================================
-ynh_script_progression --message="Configuring SSOwat..." --weight=33
+ynh_script_progression --message="Configuring SSOwat..." --weight=3
 
 # Make app public if necessary or protect it
 if [ $is_public -eq 1 ]
@@ -175,4 +185,4 @@ ynh_systemd_action --service_name=nginx --action=reload
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Installation of Snipe-IT completed" --last
+ynh_script_progression --message="Installation of $app completed" --last

@@ -9,7 +9,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 ## Overview
 Snipe-IT is a FOSS project for asset management in IT Operations. Knowing who has which laptop, when it was purchased in order to depreciate it correctly, handling software licenses, etc. It is built on Laravel 5.4.
 
-**Shipped version:** 4.9.5
+**Shipped version:** 5.0.4
 
 ## Screenshots
 

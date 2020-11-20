@@ -1,18 +1,19 @@
-# Snipe-IT app for YunoHost
+# Snipe-IT for YunoHost
 
 [![Integration level](https://dash.yunohost.org/integration/snipeit.svg)](https://dash.yunohost.org/appci/app/snipeit) ![](https://ci-apps.yunohost.org/ci/badges/snipeit.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/snipeit.maintain.svg)  
 [![Install Snipe-IT with YunoHost](https://install-app.yunohost.org/install-with-yunohost.png)](https://install-app.yunohost.org/?app=snipeit)
-
 
 > *This package allows you to install Snipe-IT quickly and simply on a YunoHost server.  
 If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/install) to learn how to install it.*
 
 ## Overview
-This is a FOSS project for asset management in IT Operations. Knowing who has which laptop, when it was purchased in order to depreciate it correctly, handling software licenses, etc.
+Snipe-IT is a FOSS project for asset management in IT Operations. Knowing who has which laptop, when it was purchased in order to depreciate it correctly, handling software licenses, etc. It is built on Laravel 5.4.
 
-It is built on Laravel 5.4.
+**Shipped version:** 5.0.4
 
-**Shipped version:** 4.9.2
+## Screenshots
+
+![](https://snipeitapp.com/img/screenshots/screenshot-license-list.png)
 
 ## Demo
 
@@ -26,8 +27,8 @@ It is built on Laravel 5.4.
 
 #### Supported architectures
 
-* x86-64 - [![Build Status](https://ci-apps.yunohost.org/ci/logs/snipeit%20%28Apps%29.svg)](https://ci-apps.yunohost.org/ci/apps/snipeit/)
-* ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/snipeit%20%28Apps%29.svg)](https://ci-apps-arm.yunohost.org/ci/apps/snipeit/)
+* x86-64 - [![Build Status](https://ci-apps.yunohost.org/ci/logs/snipeit%20%28Community%29.svg)](https://ci-apps.yunohost.org/ci/apps/snipeit/)
+* ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/snipeit%20%28Community%29.svg)](https://ci-apps-arm.yunohost.org/ci/apps/snipeit/)
 
 ## Links
 
@@ -38,8 +39,7 @@ It is built on Laravel 5.4.
 
 ---
 
-Developer info
-----------------
+## Developer info
 
 Please send your pull request to the [testing branch](https://github.com/YunoHost-Apps/snipeit_ynh/tree/testing).
 

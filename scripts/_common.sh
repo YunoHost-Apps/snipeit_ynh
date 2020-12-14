@@ -10,6 +10,7 @@
 pkg_dependencies="openssl"
 
 YNH_PHP_VERSION=7.3
+
 extra_php_dependencies="php${YNH_PHP_VERSION}-mbstring php${YNH_PHP_VERSION}-curl php${YNH_PHP_VERSION}-mysql php${YNH_PHP_VERSION}-ldap php${YNH_PHP_VERSION}-zip php${YNH_PHP_VERSION}-bcmath php${YNH_PHP_VERSION}-xml php${YNH_PHP_VERSION}-common php${YNH_PHP_VERSION}-gd"
 
 #=================================================
@@ -29,8 +30,7 @@ exec_as() {
   if [[ $USER = $(whoami) ]]; then
     eval $@
   else
-    # use sudo twice to be root and be allowed to use another user
-    sudo sudo -u "$USER" $@
+    sudo -u "$USER" $@
   fi
 }
 

@@ -30,8 +30,7 @@ exec_as() {
   if [[ $USER = $(whoami) ]]; then
     eval $@
   else
-    # use sudo twice to be root and be allowed to use another user
-    sudo sudo -u "$USER" $@
+    sudo -u "$USER" $@
   fi
 }
 

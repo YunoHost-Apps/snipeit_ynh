@@ -6,7 +6,7 @@
         "en": "Manage assets for IT operations",
         "fr": "Gestionnaire de ressources informatiques"
     },
-    "version": "5.0.4~ynh1",
+    "version": "5.0.4~ynh2",
     "url": "https://snipeitapp.com/",
     "license": "MIT",
     "maintainer": {

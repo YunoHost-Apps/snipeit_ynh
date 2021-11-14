@@ -144,6 +144,7 @@ ynh_script_progression --message="Securing files and directories..." --weight=1
 
 # Set permissions on app files
 chown -R $app: $final_path
+chmod -R o-rwx $final_path
 chmod -R 755 $final_path/storage
 chmod -R 755 $final_path/public/uploads
 

@@ -72,6 +72,7 @@ ynh_script_progression --message="Restoring user rights..."
 
 # Restore permissions on app files
 chown -R $app: $final_path
+chmod -R o-rwx $final_path
 
 #=================================================
 # RESTORE THE PHP-FPM CONFIGURATION

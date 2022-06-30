@@ -22,8 +22,11 @@ language=$(ynh_app_setting_get --app=$app --key=language)
 admin=$(ynh_app_setting_get --app=$app --key=admin)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
+db_user=$db_name
+db_pwd=$(ynh_app_setting_get --app=$app --key=mysqlpwd)
 phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 app_key=$(ynh_app_setting_get --app=$app --key=app_key)
+redis_db=$(ynh_app_setting_get --app=$app --key=redis_db)
 
 #=================================================
 # CHECK VERSION
@@ -74,9 +77,16 @@ fi
 
 # If app_key doesn't exist, create it
 if [ -z "$app_key" ]; then
-	app_key=="$(grep "^APP_KEY=" "$final_path/.env" | cut -d= -f2)"
+	app_key="$(grep "^APP_KEY=" "$final_path/.env" | cut -d= -f2)"
 	ynh_app_setting_set --app=$app --key=app_key --value=$app_key
 fi
+
+# If redis_db doesn't exist, create it
+if [ -z "$redis_db" ]; then
+	redis_db=$(ynh_redis_get_free_db)
+	ynh_app_setting_set --app=$app --key=redis_db --value=$redis_db
+fi
+
 
 #=================================================
 # CREATE DEDICATED USER

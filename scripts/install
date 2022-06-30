@@ -25,14 +25,13 @@ ynh_abort_if_errors
 
 domain=$YNH_APP_ARG_DOMAIN
 path_url="/"
-admin=$YNH_APP_ARG_ADMIN
 is_public=$YNH_APP_ARG_IS_PUBLIC
 language=$YNH_APP_ARG_LANGUAGE
-email=$(ynh_user_get_info --username=$admin --key=mail)
-key=$(ynh_string_random --length=24)
-phpversion=$YNH_PHP_VERSION
+admin=$YNH_APP_ARG_ADMIN
 
 app=$YNH_APP_INSTANCE_NAME
+
+email=$(ynh_user_get_info --username=$admin --key=mail)
 
 #=================================================
 # CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
@@ -52,9 +51,8 @@ ynh_script_progression --message="Storing installation settings..." --weight=2
 
 ynh_app_setting_set --app=$app --key=domain --value=$domain
 ynh_app_setting_set --app=$app --key=path --value=$path_url
-ynh_app_setting_set --app=$app --key=admin --value=$admin
 ynh_app_setting_set --app=$app --key=language --value=$language
-ynh_app_setting_set --app=$app --key=phpversion --value=$phpversion
+ynh_app_setting_set --app=$app --key=admin --value=$admin
 
 #=================================================
 # STANDARD MODIFICATIONS
@@ -64,6 +62,14 @@ ynh_app_setting_set --app=$app --key=phpversion --value=$phpversion
 ynh_script_progression --message="Installing dependencies..." --weight=3
 
 ynh_install_app_dependencies $pkg_dependencies
+
+#=================================================
+# CREATE DEDICATED USER
+#=================================================
+ynh_script_progression --message="Configuring system user..." --weight=3
+
+# Create a system user
+ynh_system_user_create --username=$app --home_dir="$final_path"
 
 #=================================================
 # CREATE A MYSQL DATABASE
@@ -76,14 +82,6 @@ ynh_app_setting_set --app=$app --key=db_name --value=$db_name
 ynh_mysql_setup_db --db_user=$db_user --db_name=$db_name
 
 #=================================================
-# CREATE DEDICATED USER
-#=================================================
-ynh_script_progression --message="Configuring system user..." --weight=3
-
-# Create a system user
-ynh_system_user_create --username=$app --home_dir="$final_path"
-
-#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 ynh_script_progression --message="Setting up source files..." --weight=2
@@ -91,6 +89,21 @@ ynh_script_progression --message="Setting up source files..." --weight=2
 ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source --dest_dir="$final_path"
+
+chmod 750 "$final_path"
+chmod -R o-rwx "$final_path"
+chown -R $app:www-data "$final_path"
+chmod -R 755 $final_path/storage
+chmod -R 755 $final_path/public/uploads
+
+#=================================================
+# PHP-FPM CONFIGURATION
+#=================================================
+ynh_script_progression --message="Configuring PHP-FPM..." --weight=2
+
+# Create a dedicated PHP-FPM config
+ynh_add_fpm_config --usage=low --footprint=low
+phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 #=================================================
 # NGINX CONFIGURATION
@@ -101,30 +114,15 @@ ynh_script_progression --message="Configuring NGINX web server..." --weight=5
 ynh_add_nginx_config
 
 #=================================================
-# PHP-FPM CONFIGURATION
-#=================================================
-ynh_script_progression --message="Configuring PHP-FPM..." --weight=2
-
-# Create a dedicated PHP-FPM config
-ynh_add_fpm_config --usage=low --footprint=low
-
-#=================================================
 # SPECIFIC SETUP
 #=================================================
-# INSTALL AND INITIALIZE COMPOSER
+# ADD A CONFIGURATION
 #=================================================
-ynh_script_progression --message="Installing Composer..." --weight=21
-
-# Install composer
-ynh_install_composer
-
-#=================================================
-# BUILDING
-#=================================================
-ynh_script_progression --message="Building..."
+ynh_script_progression --message="Adding a configuration file..."
 
 # Configure redis
 redis_db=$(ynh_redis_get_free_db)
+app_key=""
 ynh_app_setting_set --app="$app" --key=redis_db --value="$redis_db"
 
 ynh_add_config --template="../conf/.env" --destination="$final_path/.env"
@@ -132,36 +130,43 @@ ynh_add_config --template="../conf/.env" --destination="$final_path/.env"
 chmod 600 "$final_path/.env"
 chown $app:$app "$final_path/.env"
 
+#=================================================
+# INSTALL AND INITIALIZE COMPOSER
+#=================================================
+ynh_script_progression --message="Installing Composer..." --weight=21
+
+# Install composer
+ynh_exec_warn_less ynh_install_composer
+
+#=================================================
+# BUILDING
+#=================================================
+ynh_script_progression --message="Building..."
+
 # setup application config
 pushd "$final_path"
-	php$phpversion artisan key:generate -n --force --env
-	php$phpversion artisan migrate -n --force
-	php$phpversion artisan config:clear -n
-	php$phpversion artisan config:cache -n
+	ynh_exec_as $app php$phpversion artisan key:generate -n --force --env
+	ynh_exec_as $app php$phpversion artisan migrate -n --force
+	ynh_exec_as $app php$phpversion artisan config:clear -n
+	ynh_exec_as $app php$phpversion artisan config:cache -n
 popd
+
+app_key=="$(grep "^APP_KEY=" "$final_path/.env" | cut -d= -f2)"
+ynh_app_setting_set --app=$app --key=app_key --value=$app_key
 
 #=================================================
 # GENERIC FINALIZATION
-#=================================================
-# SECURE FILES AND DIRECTORIES
-#=================================================
-ynh_script_progression --message="Securing files and directories..." --weight=1
-
-# Set permissions to app files
-chown -R $app:www-data $final_path
-chmod -R o-rwx $final_path
-chmod -R 755 $final_path/storage
-chmod -R 755 $final_path/public/uploads
-
 #=================================================
 # SETUP SSOWAT
 #=================================================
 ynh_script_progression --message="Configuring permissions..." --weight=3
 
-# Make app public if necessary or protect it
+# Make app public if necessary
 if [ $is_public -eq 1 ]
 then
-	ynh_permission_update --permission "main" --add "visitors"
+	# Everyone can access the app.
+	# The "main" permission is automatically created before the install script.
+	ynh_permission_update --permission="main" --add="visitors"
 fi
 
 #=================================================

@@ -5,7 +5,7 @@ It shall NOT be edited by hand.
 
 # Snipe-IT for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/snipeit.svg)](https://dash.yunohost.org/appci/app/snipeit) ![](https://ci-apps.yunohost.org/ci/badges/snipeit.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/snipeit.maintain.svg)  
+[![Integration level](https://dash.yunohost.org/integration/snipeit.svg)](https://dash.yunohost.org/appci/app/snipeit) ![Working status](https://ci-apps.yunohost.org/ci/badges/snipeit.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/snipeit.maintain.svg)  
 [![Install Snipe-IT with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=snipeit)
 
 *[Lire ce readme en français.](./README_fr.md)*
@@ -17,31 +17,32 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 Manage assets for IT operations
 
-**Shipped version:** 5.3.1~ynh2
+**Shipped version:** 5.3.1~ynh3
 
 **Demo:** https://snipeitapp.com/demo/
 
 ## Screenshots
 
-![](./doc/screenshots/screenshot-license-list.png)
+![Screenshot of Snipe-IT](./doc/screenshots/screenshot-license-list.png)
 
 ## Documentation and resources
 
-* Official app website: https://snipeitapp.com/
-* Official admin documentation: https://snipe-it.readme.io/docs
-* Upstream app code repository: https://github.com/snipe/snipe-it
-* YunoHost documentation for this app: https://yunohost.org/app_snipeit
-* Report a bug: https://github.com/YunoHost-Apps/snipeit_ynh/issues
+* Official app website: <https://snipeitapp.com>
+* Official admin documentation: <https://snipe-it.readme.io/docs>
+* Upstream app code repository: <https://github.com/snipe/snipe-it>
+* YunoHost documentation for this app: <https://yunohost.org/app_snipeit>
+* Report a bug: <https://github.com/YunoHost-Apps/snipeit_ynh/issues>
 
 ## Developer info
 
 Please send your pull request to the [testing branch](https://github.com/YunoHost-Apps/snipeit_ynh/tree/testing).
 
 To try the testing branch, please proceed like that.
-```
+
+``` bash
 sudo yunohost app install https://github.com/YunoHost-Apps/snipeit_ynh/tree/testing --debug
 or
 sudo yunohost app upgrade snipeit -u https://github.com/YunoHost-Apps/snipeit_ynh/tree/testing --debug
 ```
 
-**More info regarding app packaging:** https://yunohost.org/packaging_apps
+**More info regarding app packaging:** <https://yunohost.org/packaging_apps>

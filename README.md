@@ -18,7 +18,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 Manage assets for IT operations
 
 
-**Shipped version:** 5.3.1~ynh3
+**Shipped version:** 6.0.5~ynh1
 
 **Demo:** https://snipeitapp.com/demo/
 

@@ -1,5 +1,5 @@
-SOURCE_URL=https://github.com/snipe/snipe-it/archive/v5.3.1.tar.gz
-SOURCE_SUM=0870373e35dbe34574322d49da647a4c5cf8912a153ab520eb065cc4b06787e0
+SOURCE_URL=https://github.com/snipe/snipe-it/archive/v6.0.5.tar.gz
+SOURCE_SUM=45d44923a888409deb03d3bf8adafb69e7931532e41ef23b16a7b721815e0e82
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=tar.gz
 SOURCE_IN_SUBDIR=true

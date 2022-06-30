@@ -18,7 +18,7 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 Gestionnaire de ressources informatiques
 
 
-**Version incluse :** 5.3.1~ynh3
+**Version incluse :** 6.0.5~ynh1
 
 **Démo :** https://snipeitapp.com/demo/
 

@@ -15,7 +15,7 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 
 ## Vue d'ensemble
 
-Manage assets for IT operations
+Gestionnaire de ressources informatiques
 
 
 **Version incluse :** 5.3.1~ynh3

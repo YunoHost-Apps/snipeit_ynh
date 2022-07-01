@@ -155,6 +155,12 @@ app_key=="$(grep "^APP_KEY=" "$final_path/.env" | cut -d= -f2)"
 ynh_app_setting_set --app=$app --key=app_key --value=$app_key
 ynh_store_file_checksum --file="$final_path/.env"
 
+chmod 750 "$final_path"
+chmod -R o-rwx "$final_path"
+chown -R $app:www-data "$final_path"
+chmod -R 755 $final_path/storage
+chmod -R 755 $final_path/public/uploads
+
 #=================================================
 # GENERIC FINALIZATION
 #=================================================

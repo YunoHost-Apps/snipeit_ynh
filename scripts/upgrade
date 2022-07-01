@@ -171,6 +171,12 @@ pushd "$final_path"
 	ynh_exec_as $app php$phpversion artisan config:cache -n 
 popd
 
+chmod 750 "$final_path"
+chmod -R o-rwx "$final_path"
+chown -R $app:www-data "$final_path"
+chmod -R 755 $final_path/storage
+chmod -R 755 $final_path/public/uploads
+
 #=================================================
 # GENERIC FINALIZATION
 #=================================================

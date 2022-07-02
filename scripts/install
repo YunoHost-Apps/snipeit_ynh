@@ -28,11 +28,11 @@ path_url="/"
 is_public=$YNH_APP_ARG_IS_PUBLIC
 language=$YNH_APP_ARG_LANGUAGE
 admin=$YNH_APP_ARG_ADMIN
-email=$(ynh_user_get_info --username=$admin --key=mail)
-key=$(ynh_string_random --length=24)
-phpversion=$YNH_PHP_VERSION
 
 app=$YNH_APP_INSTANCE_NAME
+
+email=$(ynh_user_get_info --username=$admin --key=mail)
+key=$(ynh_string_random --length=24)
 
 #=================================================
 # CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
@@ -54,7 +54,6 @@ ynh_app_setting_set --app=$app --key=domain --value=$domain
 ynh_app_setting_set --app=$app --key=path --value=$path_url
 ynh_app_setting_set --app=$app --key=language --value=$language
 ynh_app_setting_set --app=$app --key=admin --value=$admin
-ynh_app_setting_set --app=$app --key=phpversion --value=$phpversion
 
 #=================================================
 # STANDARD MODIFICATIONS
@@ -99,6 +98,7 @@ ynh_script_progression --message="Configuring PHP-FPM..." --weight=2
 
 # Create a dedicated PHP-FPM config
 ynh_add_fpm_config --usage=low --footprint=low
+phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 #=================================================
 # NGINX CONFIGURATION
@@ -144,11 +144,6 @@ pushd "$final_path"
 	php$phpversion artisan config:clear -n
 	php$phpversion artisan config:cache -n
 popd
-
-#=================================================
-# SECURE FILES AND DIRECTORIES
-#=================================================
-ynh_script_progression --message="Securing files and directories..." --weight=1
 
 # Set permissions to app files
 chown -R $app:www-data $final_path

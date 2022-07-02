@@ -134,17 +134,6 @@ ynh_install_composer
 ynh_exec_warn_less ynh_composer_exec --commands="dump-autoload"
 
 #=================================================
-# BUILDING
-#=================================================
-ynh_script_progression --message="Building..."
-
-pushd "$final_path"
-	php$phpversion artisan migrate -n --force
-	php$phpversion artisan config:clear -n 
-	php$phpversion artisan config:cache -n 
-popd
-
-#=================================================
 # UPDATE A CONFIG FILE
 #=================================================
 ynh_script_progression --message="Updating a configuration file..."
@@ -154,9 +143,15 @@ ynh_backup_if_checksum_is_different --file="$final_path/.env"
 ynh_store_file_checksum --file="$final_path/.env"
 
 #=================================================
-# SECURE FILES AND DIRECTORIES
+# BUILDING
 #=================================================
-ynh_script_progression --message="Securing files and directories..." --weight=1
+ynh_script_progression --message="Building..."
+
+pushd "$final_path"
+	php$phpversion artisan migrate -n --force
+	php$phpversion artisan config:clear -n 
+	php$phpversion artisan config:cache -n 
+popd
 
 # Set permissions on app files
 chown -R $app:www-data $final_path

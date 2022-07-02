@@ -31,9 +31,6 @@ admin=$YNH_APP_ARG_ADMIN
 
 app=$YNH_APP_INSTANCE_NAME
 
-email=$(ynh_user_get_info --username=$admin --key=mail)
-key=$(ynh_string_random --length=24)
-
 #=================================================
 # CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
 #=================================================
@@ -127,6 +124,7 @@ ynh_script_progression --message="Adding a configuration file..."
 redis_db=$(ynh_redis_get_free_db)
 ynh_app_setting_set --app="$app" --key=redis_db --value="$redis_db"
 
+app_key=""
 ynh_add_config --template="../conf/.env" --destination="$final_path/.env"
 
 chmod 600 "$final_path/.env"
@@ -144,6 +142,10 @@ pushd "$final_path"
 	php$phpversion artisan config:clear -n
 	php$phpversion artisan config:cache -n
 popd
+
+app_key="$(grep "^APP_KEY=" "$final_path/.env" | cut -d= -f2)"
+ynh_app_setting_set --app=$app --key=app_key --value=$app_key
+ynh_store_file_checksum --file="$final_path/.env"
 
 # Set permissions to app files
 chown -R $app:www-data $final_path

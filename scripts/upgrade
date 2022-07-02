@@ -23,6 +23,7 @@ admin=$(ynh_app_setting_get --app=$app --key=admin)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
 phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
+app_key=$(ynh_app_setting_get --app=$app --key=app_key)
 
 #=================================================
 # CHECK VERSION
@@ -69,6 +70,12 @@ fi
 if [ -z "$final_path" ]; then
 	final_path=/var/www/$app
 	ynh_app_setting_set --app=$app --key=final_path --value=$final_path
+fi
+
+# If app_key doesn't exist, create it
+if [ -z "$app_key" ]; then
+	app_key="$(grep "^APP_KEY=" "$final_path/.env" | cut -d= -f2)"
+	ynh_app_setting_set --app=$app --key=app_key --value=$app_key
 fi
 
 #=================================================

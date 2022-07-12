@@ -6,19 +6,19 @@
         "en": "Manage assets for IT operations",
         "fr": "Gestionnaire de ressources informatiques"
     },
-    "version": "5.3.1~ynh2",
-    "url": "https://snipeitapp.com/",
+    "version": "5.3.1~ynh3",
+    "url": "https://snipeitapp.com",
     "upstream": {
         "license": "MIT",
-        "website": "https://snipeitapp.com/",
+        "website": "https://snipeitapp.com",
         "demo": "https://snipeitapp.com/demo/",
         "admindoc": "https://snipe-it.readme.io/docs",
         "code": "https://github.com/snipe/snipe-it"
     },
     "license": "MIT",
     "maintainer": {
-        "name": "Anmol Sharma",
-        "email": "anmol@datamol.org"
+        "name": "",
+        "email": ""
     },
     "requirements": {
         "yunohost": ">= 4.3.0"
@@ -30,14 +30,10 @@
         "mysql"
     ],
     "arguments": {
-        "install" : [
+        "install": [
             {
                 "name": "domain",
                 "type": "domain"
-            },
-            {
-                "name": "admin",
-                "type": "user"
             },
             {
                 "name": "is_public",
@@ -53,6 +49,10 @@
                 },
                 "choices": ["en", "fr"],
                 "default": "en"
+            },
+            {
+                "name": "admin",
+                "type": "user"
             }
         ]
     }

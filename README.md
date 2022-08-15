@@ -19,6 +19,7 @@ Manage assets for IT operations
 
 **Shipped version:** 5.3.1~ynh3
 
+
 **Demo:** https://snipeitapp.com/demo/
 
 ## Screenshots

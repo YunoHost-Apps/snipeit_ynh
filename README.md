@@ -5,7 +5,8 @@ It shall NOT be edited by hand.
 
 # Snipe-IT for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/snipeit.svg)](https://dash.yunohost.org/appci/app/snipeit) ![Working status](https://ci-apps.yunohost.org/ci/badges/snipeit.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/snipeit.maintain.svg)  
+[![Integration level](https://dash.yunohost.org/integration/snipeit.svg)](https://dash.yunohost.org/appci/app/snipeit) ![Working status](https://ci-apps.yunohost.org/ci/badges/snipeit.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/snipeit.maintain.svg)
+
 [![Install Snipe-IT with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=snipeit)
 
 *[Lire ce readme en français.](./README_fr.md)*
@@ -15,10 +16,9 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 ## Overview
 
-Manage assets for IT operations
+This is a FOSS project for asset management in IT Operations. Knowing who has which laptop, when it was purchased in order to depreciate it correctly, handling software licenses, etc.
 
-**Shipped version:** 5.3.1~ynh3
-
+**Shipped version:** 6.1.0~ynh1
 
 **Demo:** https://snipeitapp.com/demo/
 

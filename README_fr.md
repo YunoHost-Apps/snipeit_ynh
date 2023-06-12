@@ -5,32 +5,32 @@ It shall NOT be edited by hand.
 
 # Snipe-IT pour YunoHost
 
-[![Niveau d'intégration](https://dash.yunohost.org/integration/snipeit.svg)](https://dash.yunohost.org/appci/app/snipeit) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/snipeit.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/snipeit.maintain.svg)  
+[![Niveau d’intégration](https://dash.yunohost.org/integration/snipeit.svg)](https://dash.yunohost.org/appci/app/snipeit) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/snipeit.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/snipeit.maintain.svg)
+
 [![Installer Snipe-IT avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=snipeit)
 
 *[Read this readme in english.](./README.md)*
 
-> *Ce package vous permet d'installer Snipe-IT rapidement et simplement sur un serveur YunoHost.
-Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l'installer et en profiter.*
+> *Ce package vous permet d’installer Snipe-IT rapidement et simplement sur un serveur YunoHost.
+Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l’installer et en profiter.*
 
-## Vue d'ensemble
+## Vue d’ensemble
 
-Gestionnaire de ressources informatiques
+This is a FOSS project for asset management in IT Operations. Knowing who has which laptop, when it was purchased in order to depreciate it correctly, handling software licenses, etc.
 
-**Version incluse :** 5.3.1~ynh3
-
+**Version incluse :** 6.1.0~ynh1
 
 **Démo :** https://snipeitapp.com/demo/
 
-## Captures d'écran
+## Captures d’écran
 
-![Capture d'écran de Snipe-IT](./doc/screenshots/screenshot-license-list.png)
+![Capture d’écran de Snipe-IT](./doc/screenshots/screenshot-license-list.png)
 
 ## Documentations et ressources
 
-* Site officiel de l'app : <https://snipeitapp.com>
-* Documentation officielle de l'admin : <https://snipe-it.readme.io/docs>
-* Dépôt de code officiel de l'app : <https://github.com/snipe/snipe-it>
+* Site officiel de l’app : <https://snipeitapp.com>
+* Documentation officielle de l’admin : <https://snipe-it.readme.io/docs>
+* Dépôt de code officiel de l’app : <https://github.com/snipe/snipe-it>
 * Documentation YunoHost pour cette app : <https://yunohost.org/app_snipeit>
 * Signaler un bug : <https://github.com/YunoHost-Apps/snipeit_ynh/issues>
 
@@ -46,4 +46,4 @@ ou
 sudo yunohost app upgrade snipeit -u https://github.com/YunoHost-Apps/snipeit_ynh/tree/testing --debug
 ```
 
-**Plus d'infos sur le packaging d'applications :** <https://yunohost.org/packaging_apps>
+**Plus d’infos sur le packaging d’applications :** <https://yunohost.org/packaging_apps>

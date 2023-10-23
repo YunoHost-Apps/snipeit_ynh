@@ -18,7 +18,7 @@ Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) po
 
 This is a FOSS project for asset management in IT Operations. Knowing who has which laptop, when it was purchased in order to depreciate it correctly, handling software licenses, etc.
 
-**Version incluse :** 6.1.0~ynh1
+**Version incluse :** 6.2.3~ynh1
 
 **Démo :** https://snipeitapp.com/demo/
 

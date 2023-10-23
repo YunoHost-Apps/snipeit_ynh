@@ -16,7 +16,7 @@ Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) po
 
 ## Vue d’ensemble
 
-This is a FOSS project for asset management in IT Operations. Knowing who has which laptop, when it was purchased in order to depreciate it correctly, handling software licenses, etc.
+Snipeit est un projet FOSS pour la gestion des actifs dans les opérations informatiques. Savoir qui possède quel ordinateur portable, quand il a été acheté pour bien l'amortir, gérer les licences des logiciels, etc.
 
 **Version incluse :** 6.2.3~ynh1
 

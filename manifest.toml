@@ -1,0 +1,65 @@
+packaging_format = 2
+
+id = "snipeit"
+name = "Snipe-IT"
+description.en = "Manage assets for IT operations"
+description.fr = "Gestionnaire de ressources informatiques"
+
+version = "6.2.3~ynh1"
+
+maintainers = []
+
+[upstream]
+license = "AGPL-3.0-or-later"
+website = "https://snipeitapp.com"
+demo = "https://snipeitapp.com/demo/"
+admindoc = "https://snipe-it.readme.io/docs/introduction"
+userdoc = "https://snipe-it.readme.io/docs/overview"
+code = "https://github.com/snipe/snipe-it"
+cpe =  "cpe:2.3:a:snipeitapp:snipe-it"
+fund = "https://snipeitapp.com/donate"
+
+[integration]
+yunohost = ">= 11.2"
+architectures = "all"
+multi_instance = false
+ldap = false
+sso = false
+disk = "200M"
+ram.build = "150M"
+ram.runtime = "50M"
+
+[install]
+    [install.domain]
+    type = "domain"
+
+    [install.init_main_permission]
+    type = "group"
+    default = "visitors"
+
+    [install.language]
+    ask.en = "Choose the application language"
+    ask.fr = "Choisissez la langue de l'application"
+    type = "select"
+    choices = ["de", "en", "fr", "it", "nl", "uk"]
+    default = "fr"
+
+[resources]
+    [resources.sources]
+        [resources.sources.main]
+        url = "https://github.com/snipe/snipe-it/archive/refs/tags/v6.2.3.tar.gz"
+        sha256 = "8de474a851a03f5239e1b000bc99d30ec9a3cc0d064cd6c4240e2b07120269db"
+        autoupdate.strategy = "latest_github_tag"
+
+    [resources.system_user]
+
+    [resources.install_dir]
+
+    [resources.permissions]
+    main.url = "/"
+
+    [resources.apt]
+    packages = "mariadb-server, openssl, php8.1-curl, php8.1-ldap, php8.1-mysql, php8.1-gd, php8.1-xml, php8.1-mbstring, php8.1-zip, php8.1-bcmath, php8.1-redis"
+
+    [resources.database]
+    type = "mysql"

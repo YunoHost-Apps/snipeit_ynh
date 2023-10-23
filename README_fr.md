@@ -32,7 +32,6 @@ This is a FOSS project for asset management in IT Operations. Knowing who has wh
 * Documentation officielle utilisateur : <https://snipe-it.readme.io/docs/overview>
 * Documentation officielle de l’admin : <https://snipe-it.readme.io/docs/introduction>
 * Dépôt de code officiel de l’app : <https://github.com/snipe/snipe-it>
-* Documentation YunoHost pour cette app : <https://yunohost.org/app_snipeit>
 * Signaler un bug : <https://github.com/YunoHost-Apps/snipeit_ynh/issues>
 
 ## Informations pour les développeurs

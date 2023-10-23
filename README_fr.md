@@ -24,7 +24,7 @@ Snipeit est un projet FOSS pour la gestion des actifs dans les opérations infor
 
 ## Captures d’écran
 
-![Capture d’écran de Snipe-IT](./doc/screenshots/screenshot-license-list.png)
+![Capture d’écran de Snipe-IT](./doc/screenshots/screenshot.png)
 
 ## Documentations et ressources
 

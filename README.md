@@ -24,7 +24,7 @@ Snipeit is a FOSS project for asset management in IT Operations. Knowing who has
 
 ## Screenshots
 
-![Screenshot of Snipe-IT](./doc/screenshots/screenshot-license-list.png)
+![Screenshot of Snipe-IT](./doc/screenshots/screenshot.png)
 
 ## Documentation and resources
 

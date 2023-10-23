@@ -5,7 +5,7 @@ name = "Snipe-IT"
 description.en = "Manage assets for IT operations"
 description.fr = "Gestionnaire de ressources informatiques"
 
-version = "6.1.0~ynh1"
+version = "6.2.3~ynh1"
 
 maintainers = []
 
@@ -20,7 +20,7 @@ cpe =  "cpe:2.3:a:snipeitapp:snipe-it"
 fund = "https://snipeitapp.com/donate"
 
 [integration]
-yunohost = ">= 11.1.20"
+yunohost = ">= 11.2"
 architectures = "all"
 multi_instance = false
 ldap = false
@@ -31,9 +31,7 @@ ram.runtime = "50M"
 
 [install]
     [install.domain]
-    # this is a generic question - ask strings are automatically handled by Yunohost's core
     type = "domain"
-    full_domain = true
 
     [install.init_main_permission]
     type = "group"
@@ -42,15 +40,15 @@ ram.runtime = "50M"
     [install.language]
     ask.en = "Choose the application language"
     ask.fr = "Choisissez la langue de l'application"
-    type = "string"
+    type = "select"
     choices = ["en", "fr"]
     default = "en"
 
 [resources]
     [resources.sources]
         [resources.sources.main]
-        url = "https://github.com/snipe/snipe-it/archive/refs/tags/v6.1.0.tar.gz"
-        sha256 = "002e8bd89bdbba24a12259e0b32d08a85df3723d25427d2d906d97122b66daab"
+        url = "https://github.com/snipe/snipe-it/archive/refs/tags/v6.2.3.tar.gz"
+        sha256 = "8de474a851a03f5239e1b000bc99d30ec9a3cc0d064cd6c4240e2b07120269db"
         autoupdate.strategy = "latest_github_tag"
 
     [resources.system_user]
@@ -61,7 +59,7 @@ ram.runtime = "50M"
     main.url = "/"
 
     [resources.apt]
-    packages = "mariadb-server, openssl, redis, php8.1-curl, php8.1-ldap, php8.1-mysql, php8.1-gd, php8.1-xml, php8.1-mbstring, php8.1-zip, php8.1-bcmath, php8.1-redis"
+    packages = "mariadb-server, openssl, php8.1-curl, php8.1-ldap, php8.1-mysql, php8.1-gd, php8.1-xml, php8.1-mbstring, php8.1-zip, php8.1-bcmath, php8.1-redis"
 
     [resources.database]
     type = "mysql"

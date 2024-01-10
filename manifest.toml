@@ -45,7 +45,7 @@ ram.runtime = "50M"
     ask.fr = "Choisissez la langue de l'application"
     type = "select"
     choices = ["de", "en", "fr", "it", "nl", "uk"]
-    default = "en"
+    default = "fr"
 
 [resources]
     [resources.sources]

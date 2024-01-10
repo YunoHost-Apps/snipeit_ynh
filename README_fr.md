@@ -32,6 +32,7 @@ Snipeit est un projet FOSS pour la gestion des actifs dans les opérations infor
 * Documentation officielle utilisateur : <https://snipe-it.readme.io/docs/overview>
 * Documentation officielle de l’admin : <https://snipe-it.readme.io/docs/introduction>
 * Dépôt de code officiel de l’app : <https://github.com/snipe/snipe-it>
+* YunoHost Store: <https://apps.yunohost.org/app/snipeit>
 * Signaler un bug : <https://github.com/YunoHost-Apps/snipeit_ynh/issues>
 
 ## Informations pour les développeurs

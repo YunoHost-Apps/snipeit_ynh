@@ -32,6 +32,7 @@ Snipeit is a FOSS project for asset management in IT Operations. Knowing who has
 * Official user documentation: <https://snipe-it.readme.io/docs/overview>
 * Official admin documentation: <https://snipe-it.readme.io/docs/introduction>
 * Upstream app code repository: <https://github.com/snipe/snipe-it>
+* YunoHost Store: <https://apps.yunohost.org/app/snipeit>
 * Report a bug: <https://github.com/YunoHost-Apps/snipeit_ynh/issues>
 
 ## Developer info

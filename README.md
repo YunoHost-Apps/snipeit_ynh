@@ -18,7 +18,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 Snipeit is a FOSS project for asset management in IT Operations. Knowing who has which laptop, when it was purchased in order to depreciate it correctly, handling software licenses, etc.
 
-**Shipped version:** 6.2.3~ynh1
+**Shipped version:** 6.3.0~ynh1
 
 **Demo:** https://snipeitapp.com/demo/
 
@@ -32,6 +32,7 @@ Snipeit is a FOSS project for asset management in IT Operations. Knowing who has
 * Official user documentation: <https://snipe-it.readme.io/docs/overview>
 * Official admin documentation: <https://snipe-it.readme.io/docs/introduction>
 * Upstream app code repository: <https://github.com/snipe/snipe-it>
+* YunoHost Store: <https://apps.yunohost.org/app/snipeit>
 * Report a bug: <https://github.com/YunoHost-Apps/snipeit_ynh/issues>
 
 ## Developer info

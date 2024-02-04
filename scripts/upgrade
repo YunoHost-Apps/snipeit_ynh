@@ -39,7 +39,7 @@ then
 	ynh_script_progression --message="Upgrading source files..." --weight=7
 
 	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$install_dir" --full_replace=1 --keep=".env storage/oauth-private.key storage/oauth-public.key storage/private_uploads public/uploads"
+	ynh_setup_source --dest_dir="$install_dir" --keep=".env storage/oauth-private.key storage/oauth-public.key storage/private_uploads public/uploads"
 fi
 
 chown -R $app:www-data "$install_dir"

@@ -18,7 +18,7 @@ Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) po
 
 Snipeit est un projet FOSS pour la gestion des actifs dans les opérations informatiques. Savoir qui possède quel ordinateur portable, quand il a été acheté pour bien l'amortir, gérer les licences des logiciels, etc.
 
-**Version incluse :** 6.3.0~ynh1
+**Version incluse :** 6.3.1~ynh1
 
 **Démo :** https://snipeitapp.com/demo/
 

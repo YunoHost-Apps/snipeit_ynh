@@ -9,7 +9,7 @@ It shall NOT be edited by hand.
 
 [![Install Snipe-IT with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=snipeit)
 
-*[Read this README is other languages.](./ALL_README.md)*
+*[Read this README in other languages.](./ALL_README.md)*
 
 > *This package allows you to install Snipe-IT quickly and simply on a YunoHost server.*  
 > *If you don't have YunoHost, please consult [the guide](https://yunohost.org/install) to learn how to install it.*
@@ -18,7 +18,7 @@ It shall NOT be edited by hand.
 
 Snipeit is a FOSS project for asset management in IT Operations. Knowing who has which laptop, when it was purchased in order to depreciate it correctly, handling software licenses, etc.
 
-**Shipped version:** 6.3.1~ynh1
+**Shipped version:** 6.3.4~ynh1
 
 **Demo:** <https://snipeitapp.com/demo/>
 

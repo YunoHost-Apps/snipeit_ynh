@@ -18,7 +18,7 @@ It shall NOT be edited by hand.
 
 Snipeit is a FOSS project for asset management in IT Operations. Knowing who has which laptop, when it was purchased in order to depreciate it correctly, handling software licenses, etc.
 
-**Shipped version:** 6.4.1~ynh1
+**Shipped version:** 6.4.2~ynh1
 
 **Demo:** <https://snipeitapp.com/demo/>
 

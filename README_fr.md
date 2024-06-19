@@ -18,7 +18,7 @@ Il NE doit PAS être modifié à la main.
 
 Snipeit est un projet FOSS pour la gestion des actifs dans les opérations informatiques. Savoir qui possède quel ordinateur portable, quand il a été acheté pour bien l'amortir, gérer les licences des logiciels, etc.
 
-**Version incluse :** 6.4.2~ynh1
+**Version incluse :** 7.0.3~ynh1
 
 **Démo :** <https://snipeitapp.com/demo/>
 

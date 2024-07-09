@@ -5,7 +5,7 @@
 
 # YunoHost 上的 Snipe-IT
 
-[![集成程度](https://dash.yunohost.org/integration/snipeit.svg)](https://dash.yunohost.org/appci/app/snipeit) ![工作状态](https://ci-apps.yunohost.org/ci/badges/snipeit.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/snipeit.maintain.svg)
+[![集成程度](https://dash.yunohost.org/integration/snipeit.svg)](https://ci-apps.yunohost.org/ci/apps/snipeit/) ![工作状态](https://ci-apps.yunohost.org/ci/badges/snipeit.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/snipeit.maintain.svg)
 
 [![使用 YunoHost 安装 Snipe-IT](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=snipeit)
 
@@ -18,7 +18,7 @@
 
 Snipeit is a FOSS project for asset management in IT Operations. Knowing who has which laptop, when it was purchased in order to depreciate it correctly, handling software licenses, etc.
 
-**分发版本：** 6.4.2~ynh1
+**分发版本：** 7.0.8~ynh1
 
 **演示：** <https://snipeitapp.com/demo/>
 

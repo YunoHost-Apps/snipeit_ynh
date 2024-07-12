@@ -20,6 +20,11 @@ ynh_setup_source --dest_dir="$install_dir"
 
 chown -R $app:www-data "$install_dir"
 
+# setup page tries to access https://$domain$path/.env and fails on self signed certs
+ynh_replace_string --target_file="$install_dir/app/Http/Controllers/SettingsController.php" \
+	--match_string="->get(URL::to('.env'))" \
+	--replace_string="->withoutVerifying()->get(URL::to('.env'))"
+
 #=================================================
 # SYSTEM CONFIGURATION
 #=================================================

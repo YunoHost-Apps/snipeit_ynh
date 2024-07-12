@@ -1,8 +1,6 @@
 #!/bin/bash
 
 #=================================================
-# GENERIC START
-#=================================================
 # IMPORT GENERIC HELPERS
 #=================================================
 
@@ -10,7 +8,13 @@ source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
-# APP "BUILD" (DEPLOYING SOURCES, VENV, COMPILING ETC)
+# INITIALIZE AND STORE SETTINGS
+#=================================================
+
+# fr -> fr-FR
+language="${language}-${language^^}"
+ynh_app_setting_set --app="$app" --key="language" --value="$language"
+
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
@@ -18,12 +22,48 @@ ynh_script_progression --message="Setting up source files..." --weight=2
 
 ynh_setup_source --dest_dir="$install_dir"
 
-chown -R $app:www-data "$install_dir"
+chown -R "$app:www-data" "$install_dir"
 
 # setup page tries to access https://$domain$path/.env and fails on self signed certs
 ynh_replace_string --target_file="$install_dir/app/Http/Controllers/SettingsController.php" \
 	--match_string="->get(URL::to('.env'))" \
 	--replace_string="->withoutVerifying()->get(URL::to('.env'))"
+
+#=================================================
+# ADD A CONFIGURATION
+#=================================================
+ynh_script_progression --message="Adding $app's configuration file..." --weight=1
+
+app_key=""
+ynh_add_config --template="snipeit.env" --destination="$install_dir/.env"
+
+chmod 600 "$install_dir/.env"
+chown "$app:$app" "$install_dir/.env"
+
+#=================================================
+# BUILDING
+#=================================================
+ynh_script_progression --message="Building $app..."
+
+ynh_install_composer
+
+# setup application config
+pushd "$install_dir"
+    ynh_exec_as "$app" "php$phpversion" artisan key:generate -n --force --env
+    ynh_exec_as "$app" "php$phpversion" artisan migrate -n --force
+    ynh_exec_as "$app" "php$phpversion" artisan config:clear -n
+    ynh_exec_as "$app" "php$phpversion" artisan config:cache -n
+popd
+
+app_key="$(grep "^APP_KEY=" "$install_dir/.env" | cut -d= -f2)"
+ynh_app_setting_set --app="$app" --key="app_key" --value="$app_key"
+ynh_store_file_checksum --file="$install_dir/.env"
+
+# Set permissions to app files
+chown -R "$app:www-data" "$install_dir"
+chmod -R o-rwx "$install_dir"
+chmod -R 755 "$install_dir/storage"
+chmod -R 755 "$install_dir/public/uploads"
 
 #=================================================
 # SYSTEM CONFIGURATION
@@ -33,44 +73,6 @@ ynh_script_progression --message="Adding system configurations related to $app..
 ynh_add_fpm_config
 
 ynh_add_nginx_config
-
-ynh_install_composer
-
-#=================================================
-# APP INITIAL CONFIGURATION
-#=================================================
-# ADD A CONFIGURATION
-#=================================================
-ynh_script_progression --message="Adding a configuration file..." --weight=1
-
-app_key=""
-ynh_add_config --template="snipeit.env" --destination="$install_dir/.env"
-
-chmod 600 "$install_dir/.env"
-chown $app:$app "$install_dir/.env"
-
-#=================================================
-# BUILDING
-#=================================================
-ynh_script_progression --message="Building..."
-
-# setup application config
-pushd "$install_dir"
-	php$phpversion artisan key:generate -n --force --env
-	php$phpversion artisan migrate -n --force
-	php$phpversion artisan config:clear -n
-	php$phpversion artisan config:cache -n
-popd
-
-app_key="$(grep "^APP_KEY=" "$install_dir/.env" | cut -d= -f2)"
-ynh_app_setting_set --app=$app --key=app_key --value=$app_key
-ynh_store_file_checksum --file="$install_dir/.env"
-
-# Set permissions to app files
-chown -R $app:www-data $install_dir
-chmod -R o-rwx $install_dir
-chmod -R 755 $install_dir/storage
-chmod -R 755 $install_dir/public/uploads
 
 #=================================================
 # END OF SCRIPT

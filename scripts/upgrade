@@ -1,22 +1,12 @@
 #!/bin/bash
 
 #=================================================
-# GENERIC START
-#=================================================
 # IMPORT GENERIC HELPERS
 #=================================================
 
 source _common.sh
 source /usr/share/yunohost/helpers
 
-#=================================================
-# CHECK VERSION
-#=================================================
-
-upgrade_type=$(ynh_check_app_version_changed)
-
-#=================================================
-# STANDARD UPGRADE STEPS
 #=================================================
 # ENSURE DOWNWARD COMPATIBILITY
 #=================================================
@@ -28,21 +18,59 @@ if [ -z "$app_key" ]; then
 	ynh_app_setting_set --app=$app --key=app_key --value=$app_key
 fi
 
-#=================================================
-# "REBUILD" THE APP (DEPLOY NEW SOURCES, RERUN COMPOSER BUILD...)
+if (( ${#language}  == 2 )); then
+    # fr -> fr-FR
+    language="${language}-${language^^}"
+    ynh_app_setting_set --app="$app" --key="language" --value="$language"
+fi
+
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
+ynh_script_progression --message="Upgrading source files..." --weight=7
 
-if [ "$upgrade_type" == "UPGRADE_APP" ]
-then
-	ynh_script_progression --message="Upgrading source files..." --weight=7
+# Download, check integrity, uncompress and patch the source from app.src
+ynh_setup_source --dest_dir="$install_dir" --keep=".env storage/oauth-private.key storage/oauth-public.key storage/private_uploads public/uploads"
 
-	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$install_dir" --keep=".env storage/oauth-private.key storage/oauth-public.key storage/private_uploads public/uploads"
-fi
+chown -R "$app:www-data" "$install_dir"
 
-chown -R $app:www-data "$install_dir"
+# setup page tries to access https://$domain$path/.env and fails on self signed certs
+ynh_replace_string --target_file="$install_dir/app/Http/Controllers/SettingsController.php" \
+	--match_string="->get(URL::to('.env'))" \
+	--replace_string="->withoutVerifying()->get(URL::to('.env'))"
+
+#=================================================
+# UPDATE A CONFIG FILE
+#=================================================
+ynh_script_progression --message="Updating a configuration file..."
+
+ynh_backup_if_checksum_is_different --file="$install_dir/.env"
+
+# Recalculate and store the checksum of the file for the next upgrade.
+ynh_store_file_checksum --file="$install_dir/.env"
+# XXX: Regenerate .env instead ?
+# ynh_add_config --template="snipeit.env" --destination="$install_dir/.env"
+
+#=================================================
+# BUILDING
+#=================================================
+ynh_script_progression --message="Building $app..."
+
+ynh_install_composer
+
+ynh_exec_warn_less ynh_composer_exec --commands="dump-autoload"
+
+pushd "$install_dir"
+	ynh_exec_as "$app" "php$phpversion" artisan migrate -n --force
+	ynh_exec_as "$app" "php$phpversion" artisan config:clear -n
+	ynh_exec_as "$app" "php$phpversion" artisan config:cache -n
+popd
+
+# Set permissions on app files
+chown -R "$app:www-data" "$install_dir"
+chmod -R o-rwx "$install_dir"
+chmod -R 755 "$install_dir/storage"
+chmod -R 755 "$install_dir/public/uploads"
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
@@ -52,43 +80,6 @@ ynh_script_progression --message="Upgrading system configurations related to $ap
 ynh_add_fpm_config
 
 ynh_add_nginx_config
-
-#=================================================
-# INSTALL AND INITIALIZE COMPOSER
-#=================================================
-ynh_script_progression --message="Installing Composer..." --weight=15
-
-ynh_install_composer
-
-ynh_exec_warn_less ynh_composer_exec --commands="dump-autoload"
-
-#=================================================
-# UPDATE A CONFIG FILE
-#=================================================
-ynh_script_progression --message="Updating a configuration file..."
-
-ynh_backup_if_checksum_is_different --file="$install_dir/.env"
-# Recalculate and store the checksum of the file for the next upgrade.
-ynh_store_file_checksum --file="$install_dir/.env"
-# XXX: Regenerate .env instead ?
-# ynh_add_config --template="snipeit.env" --destination="$install_dir/.env"
-
-#=================================================
-# BUILDING
-#=================================================
-ynh_script_progression --message="Building..."
-
-pushd "$install_dir"
-	php$phpversion artisan migrate -n --force
-	php$phpversion artisan config:clear -n 
-	php$phpversion artisan config:cache -n 
-popd
-
-# Set permissions on app files
-chown -R $app:www-data $install_dir
-chmod -R o-rwx $install_dir
-chmod -R 755 $install_dir/storage
-chmod -R 755 $install_dir/public/uploads
 
 #=================================================
 # END OF SCRIPT

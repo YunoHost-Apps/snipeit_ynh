@@ -23,6 +23,11 @@ ynh_replace_string --target_file="$install_dir/.env" \
     --match_string="APP_URL=https://$old_domain" \
     --replace_string="APP_URL=https://$new_domain"
 
+pushd "$install_dir"
+    ynh_exec_as "$app" "php$phpversion" artisan config:clear -n
+    ynh_exec_as "$app" "php$phpversion" artisan config:cache -n
+popd
+
 #=================================================
 # END OF SCRIPT
 #=================================================

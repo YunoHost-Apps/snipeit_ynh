@@ -1,3 +1,5 @@
+#:schema https://raw.githubusercontent.com/YunoHost/apps/master/schemas/manifest.v2.schema.json
+
 packaging_format = 2
 
 id = "snipeit"
@@ -5,7 +7,7 @@ name = "Snipe-IT"
 description.en = "Manage assets for IT operations"
 description.fr = "Gestionnaire de ressources informatiques"
 
-version = "6.4.2~ynh1"
+version = "7.0.9~ynh1"
 
 maintainers = []
 
@@ -50,8 +52,8 @@ ram.runtime = "50M"
 [resources]
     [resources.sources]
         [resources.sources.main]
-        url = "https://github.com/snipe/snipe-it/archive/refs/tags/v6.4.2.tar.gz"
-        sha256 = "b2b3c9fa4501e0b81c41562db40798a786e92dd932e1de40bbc8e731c1474135"
+        url = "https://github.com/snipe/snipe-it/archive/refs/tags/v7.0.9.tar.gz"
+        sha256 = "632ebcbd982da019eff6749b23c53b304b20b416cf1636e6e9cbd5bccf7e3367"
         autoupdate.strategy = "latest_github_tag"
 
     [resources.system_user]
@@ -63,7 +65,19 @@ ram.runtime = "50M"
     main.url = "/"
 
     [resources.apt]
-    packages = "mariadb-server, openssl, php8.1-curl, php8.1-ldap, php8.1-mysql, php8.1-gd, php8.1-xml, php8.1-mbstring, php8.1-zip, php8.1-bcmath, php8.1-redis"
+    packages = [
+        "mariadb-server",
+        "openssl",
+        "php8.1-curl",
+        "php8.1-ldap",
+        "php8.1-mysql",
+        "php8.1-gd",
+        "php8.1-xml",
+        "php8.1-mbstring",
+        "php8.1-zip",
+        "php8.1-bcmath",
+        "php8.1-redis",
+    ]
 
     [resources.database]
     type = "mysql"

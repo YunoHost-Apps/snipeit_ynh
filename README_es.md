@@ -18,7 +18,7 @@ No se debe editar a mano.
 
 Snipeit is a FOSS project for asset management in IT Operations. Knowing who has which laptop, when it was purchased in order to depreciate it correctly, handling software licenses, etc.
 
-**Versión actual:** 7.0.11~ynh1
+**Versión actual:** 7.0.12~ynh1
 
 **Demo:** <https://snipeitapp.com/demo/>
 
@@ -37,7 +37,7 @@ Snipeit is a FOSS project for asset management in IT Operations. Knowing who has
 
 ## Información para desarrolladores
 
-Por favor enviar sus correcciones a la [`branch testing`](https://github.com/YunoHost-Apps/snipeit_ynh/tree/testing
+Por favor enviar sus correcciones a la [rama `testing`](https://github.com/YunoHost-Apps/snipeit_ynh/tree/testing).
 
 Para probar la rama `testing`, sigue asÍ:
 

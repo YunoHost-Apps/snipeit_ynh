@@ -35,9 +35,6 @@ ynh_script_progression "Adding $app's configuration file..."
 app_key=""
 ynh_config_add --template="snipeit.env" --destination="$install_dir/.env"
 
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 600 "$install_dir/.env"
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown "$app:$app" "$install_dir/.env"
-
 #=================================================
 # BUILDING
 #=================================================

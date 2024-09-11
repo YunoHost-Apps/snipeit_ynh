@@ -22,7 +22,6 @@ ynh_script_progression "Setting up source files..."
 
 ynh_setup_source --dest_dir="$install_dir"
 
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown -R "$app:www-data" "$install_dir"
 # setup page tries to access https://$domain$path/.env and fails on self signed certs
 ynh_replace --file="$install_dir/app/Http/Controllers/SettingsController.php" \
 	--match="->get(URL::to('.env'))" \
@@ -60,8 +59,6 @@ ynh_app_setting_set --key="app_key" --value="$app_key"
 ynh_store_file_checksum "$install_dir/.env"
 
 # Set permissions to app files
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown -R "$app:www-data" "$install_dir"
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod -R o-rwx "$install_dir"
 chmod -R 755 "$install_dir/storage"
 chmod -R 755 "$install_dir/public/uploads"
 

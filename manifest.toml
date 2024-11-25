@@ -7,7 +7,7 @@ name = "Snipe-IT"
 description.en = "Manage assets for IT operations"
 description.fr = "Gestionnaire de ressources informatiques"
 
-version = "7.1.14~ynh1"
+version = "7.1.15~ynh1"
 
 maintainers = []
 
@@ -53,8 +53,8 @@ ram.runtime = "50M"
 [resources]
     [resources.sources]
         [resources.sources.main]
-        url = "https://github.com/snipe/snipe-it/archive/refs/tags/v7.1.14.tar.gz"
-        sha256 = "053a5526dadb9c77bac2d0c8cead2943b995387ce9407820a1c8b1ad09846c01"
+        url = "https://github.com/snipe/snipe-it/archive/refs/tags/v7.1.15.tar.gz"
+        sha256 = "9d176cf8933a4df7cd05882666d231bb3def510af855186ee0d718c028954ccb"
         autoupdate.strategy = "latest_github_tag"
 
     [resources.system_user]

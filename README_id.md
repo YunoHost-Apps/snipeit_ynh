@@ -5,7 +5,9 @@ Ini TIDAK boleh diedit dengan tangan.
 
 # Snipe-IT untuk YunoHost
 
-[![Tingkat integrasi](https://dash.yunohost.org/integration/snipeit.svg)](https://ci-apps.yunohost.org/ci/apps/snipeit/) ![Status kerja](https://ci-apps.yunohost.org/ci/badges/snipeit.status.svg) ![Status pemeliharaan](https://ci-apps.yunohost.org/ci/badges/snipeit.maintain.svg)
+[![Tingkat integrasi](https://apps.yunohost.org/badge/integration/snipeit)](https://ci-apps.yunohost.org/ci/apps/snipeit/)
+![Status kerja](https://apps.yunohost.org/badge/state/snipeit)
+![Status pemeliharaan](https://apps.yunohost.org/badge/maintained/snipeit)
 
 [![Pasang Snipe-IT dengan YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=snipeit)
 
@@ -18,7 +20,7 @@ Ini TIDAK boleh diedit dengan tangan.
 
 Snipeit is a FOSS project for asset management in IT Operations. Knowing who has which laptop, when it was purchased in order to depreciate it correctly, handling software licenses, etc.
 
-**Versi terkirim:** 7.1.14~ynh1
+**Versi terkirim:** 7.1.15~ynh1
 
 **Demo:** <https://snipeitapp.com/demo/>
 

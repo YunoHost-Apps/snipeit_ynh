@@ -8,4 +8,4 @@
 
 composer_version=2.5.8
 
-timezone=$(cat /etc/timezone)
+timezone=$(timedatectl show --value --property=Timezone)

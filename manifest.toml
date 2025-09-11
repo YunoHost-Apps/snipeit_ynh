@@ -28,7 +28,6 @@ architectures = "all"
 multi_instance = false
 
 ldap = false
-
 sso = false
 
 disk = "200M"
@@ -70,19 +69,19 @@ ram.runtime = "50M"
     packages = [
         "mariadb-server",
         "openssl",
-        "php8.2-curl",
-        "php8.2-ldap",
-        "php8.2-mysql",
-        "php8.2-gd",
-        "php8.2-xml",
-        "php8.2-mbstring",
-        "php8.2-zip",
-        "php8.2-bcmath",
-        "php8.2-redis",
+        "php8.4-curl",
+        "php8.4-ldap",
+        "php8.4-mysql",
+        "php8.4-gd",
+        "php8.4-xml",
+        "php8.4-mbstring",
+        "php8.4-zip",
+        "php8.4-bcmath",
+        "php8.4-redis",
     ]
 
     [resources.database]
     type = "mysql"
 
     [resources.composer]
-    version = "2.5.8"
+    version = "2.8.11"

@@ -6,6 +6,4 @@
 
 # Packages requirements: https://snipe-it.readme.io/docs/requirements
 
-composer_version=2.5.8
-
 timezone=$(timedatectl show --value --property=Timezone)

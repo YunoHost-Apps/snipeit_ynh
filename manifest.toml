@@ -22,7 +22,7 @@ cpe =  "cpe:2.3:a:snipeitapp:snipe-it"
 fund = "https://snipeitapp.com/donate"
 
 [integration]
-yunohost = ">= 12.1.17"
+yunohost = ">= 12.1.38"
 helpers_version = "2.1"
 architectures = "all"
 multi_instance = false
@@ -84,4 +84,4 @@ ram.runtime = "50M"
     type = "mysql"
 
     [resources.composer]
-    version = "2.8.11"
+    version = "2.9.3"

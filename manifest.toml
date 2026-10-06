@@ -7,7 +7,7 @@ name = "Snipe-IT"
 description.en = "Manage assets for IT operations"
 description.fr = "Gestionnaire de ressources informatiques"
 
-version = "8.7.2~ynh1"
+version = "8.8.0~ynh1"
 
 maintainers = []
 
@@ -22,7 +22,7 @@ cpe =  "cpe:2.3:a:snipeitapp:snipe-it"
 fund = "https://snipeitapp.com/donate"
 
 [integration]
-yunohost = ">= 12.1.38"
+yunohost = ">= 12.1.40"
 helpers_version = "2.1"
 architectures = "all"
 multi_instance = false
@@ -52,8 +52,8 @@ ram.runtime = "50M"
 [resources]
     [resources.sources]
     [resources.sources.main]
-    url = "https://github.com/snipe/snipe-it/archive/refs/tags/v8.7.2.tar.gz"
-    sha256 = "f9b4f447350c25bcf9ba84cac132b44b09e6db275f5baf98fccd94c243687f9a"
+    url = "https://github.com/snipe/snipe-it/archive/refs/tags/v8.8.0.tar.gz"
+    sha256 = "029f3833054dc81dcb75f6674d77d7fb0b2e1a32778de283b08e626e70054162"
     autoupdate.strategy = "latest_github_tag"
 
     [resources.system_user]
@@ -84,4 +84,4 @@ ram.runtime = "50M"
     type = "mysql"
 
     [resources.composer]
-    version = "2.9.3"
+    version = "2.10.3"
